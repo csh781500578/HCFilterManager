@@ -144,13 +144,13 @@ static inline void encodeWithCoder(NSCoder *coder,id instance) {
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     encodeWithCoder(aCoder, self);
 }
-+ (NSDictionary *)mj_replacedKeyFromPropertyName{
++ (NSDictionary *)hc_replacedKeyWithProperty{
     return @{
              @"baiduX" : @"baidu_x",
              @"baiduY" : @"baidu_y",
              };
 }
-+ (NSDictionary *)mj_objectClassInArray {
++ (NSDictionary *)hc_modelWithArrayObject {
     static NSDictionary *config;
     if (!config) {
         config = @{

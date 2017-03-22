@@ -7,7 +7,6 @@
 //
 
 #import "HCFilterManager+SupportedAPIs.h"
-#import "HCFilterMenuView.h"
 
 static void * selectedCodesAddressKey = &selectedCodesAddressKey;
 

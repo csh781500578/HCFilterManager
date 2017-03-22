@@ -10,4 +10,12 @@
 
 @interface NSObject (HCModel)
 
++ (NSDictionary *)hc_replacedKeyWithProperty;
+
++ (NSDictionary *)hc_modelWithArrayObject;
+
++ (instancetype)hc_objectWithkeyValue:(id)object;
+
++ (NSMutableArray *)hc_objectArrayWithkeyValues:(NSArray *)array;
+
 @end

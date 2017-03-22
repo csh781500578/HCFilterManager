@@ -7,8 +7,6 @@
 //
 
 #import "HCDoubleTableView.h"
-#import "HCFilterResultModel.h"
-#import "HCFilterConfig.h"
 
 #define TABLE_VIEW_ROW_HEIGHT 40
 

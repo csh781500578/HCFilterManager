@@ -7,7 +7,7 @@
 //
 
 #import "HCFilterMenuButton.h"
-#import <UIKit/UIButton.h>
+#import <objc/runtime.h>
 
 static void * filter_button_title_key = &filter_button_title_key;
 static void * filter_button_color_key = &filter_button_color_key;

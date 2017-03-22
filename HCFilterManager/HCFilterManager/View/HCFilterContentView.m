@@ -7,11 +7,6 @@
 //
 
 #import "HCFilterContentView.h"
-#import "HCFilterConstant.h"
-#import "HCFilterMenuView.h"
-#import "HCPullDownView.h"
-#import "HCFilterConfig.h"
-#import "HCFilterResultModel.h"
 
 #define PULL_DOWN_VIEW_TAG_DEFAULT 1000
 #define ANIMATION_TIME_INTERNAL 0.1

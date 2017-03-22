@@ -7,8 +7,6 @@
 //
 
 #import "HCFilterManager.h"
-#import "HCFilterConfig.h"
-#import "HCFilterResultModel.h"
 
 @interface HCFilterManager()
 
@@ -102,10 +100,10 @@
         id value = [dictionary objectForKey:valueKeys];
         if ([valueKeys isEqualToString:newKey]) {
             if ([value isKindOfClass:[NSArray class]]) {
-                NSArray *array = [HCFilterCodeModel mj_objectArrayWithKeyValuesArray:value];
+                NSArray *array = [HCFilterCodeModel hc_objectArrayWithkeyValues:value];
                 return @{key:array?:@""};
             }else {
-                HCFilterCodeModel *model = [HCFilterCodeModel mj_objectWithKeyValues:value];
+                HCFilterCodeModel *model = [HCFilterCodeModel hc_objectWithkeyValue:value];
                 return @{key:model?:@""};
             } 
         }else {

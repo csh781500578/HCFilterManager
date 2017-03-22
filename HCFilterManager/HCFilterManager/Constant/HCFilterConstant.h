@@ -20,9 +20,14 @@
 #define TEXT_FIELD_BACKGROUND_COLOR [UIColor colorWithRGB:0xEFEFEF]
 #define SEPARATE_VIEW_BACKGROUND_COLOR [UIColor colorWithRGB:0x535353]
 #define UENABLE_BUTTON_BACKGROUND_COLOR [UIColor colorWithRGB:0xCCCCCC]
+#define LINE_VIEW_DEFAULT_COLOR [UIColor colorWithRGB:0xDDDDDD]
 #define ENABLE_BUTTON_BACKGROUND_COLOR [UIColor redColor]
 #define LAYER_BORDER_COLOR [UIColor colorWithRGB:0xD5D5D5]
 #define COLLECTION_HEADER_BACKGROUND_COLOR [UIColor colorWithRGB:0xF5F5F5]
+
+#define USER_DEFAULT [NSUserDefaults standardUserDefaults]
+#define SCREEN_WIDTH            ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT            ([UIScreen mainScreen].bounds.size.height)
 
 
 typedef NS_ENUM(NSUInteger, HCFilterSelectType) {

@@ -6,8 +6,7 @@
 //  Copyright © 2017年 hanryChen. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "HCFilterResultModel.h"
+#import <UIKit/UIKit.h> 
 
 static inline NSArray  * titlesFromList(NSArray *list) {
     NSMutableArray *titles = [NSMutableArray arrayWithCapacity:2];

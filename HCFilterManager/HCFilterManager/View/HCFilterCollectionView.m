@@ -7,9 +7,6 @@
 //
 
 #import "HCFilterCollectionView.h"
-#import "HCFilterFillingView.h"
-#import "HCFilterResultModel.h"
-#import "HCFilterConfig.h"
 
 #define COMMIT_VIEW_BUTTON_HEIGHT 42
 

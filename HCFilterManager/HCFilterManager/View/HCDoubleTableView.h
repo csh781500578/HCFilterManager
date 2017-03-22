@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HCFilterResultModel.h"
 @class HCTableViewCell;
 
 @interface HCDoubleTableView : UIView

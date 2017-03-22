@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HCFilterConstant.h"
-#import "HCFilterContentView.h"
 
 
 @interface HCFilterManager : NSObject

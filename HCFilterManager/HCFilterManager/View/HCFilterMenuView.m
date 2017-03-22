@@ -7,8 +7,6 @@
 //
 
 #import "HCFilterMenuView.h"
-#import "HCFilterMenuButton.h"
-#import "HCFilterResultModel.h"
 
 #define FILTER_MENU_VIEW_TAG_DEFAULT 1200
 
@@ -19,7 +17,7 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         UIView *lineView = [[UIView alloc] initWithFrame:(CGRect){0,frame.size.height - LINE_VIEW_HEIGHT,SCREEN_WIDTH,LINE_VIEW_HEIGHT}];
-        lineView.backgroundColor = [UIColor lineDefaultColor];
+        lineView.backgroundColor = LINE_VIEW_DEFAULT_COLOR;
         [self addSubview:lineView];
     }
     return self;

@@ -7,10 +7,6 @@
 //
 
 #import "HCPullDownView.h"
-#import "HCSegmentedView.h"
-#import "HCDoubleTableView.h"
-#import "HCFilterConfig.h"
-#import "HCFilterCollectionView.h"
 
 #define TABLE_VIEW_HEIGHT_MAX ((SCREEN_HEIGHT - 2 * FILTER_VIEW_HEIGHT - 64) * 3 / 4.0)
 

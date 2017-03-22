@@ -7,7 +7,6 @@
 //
 
 #import "HCSegmentedView.h"
-#import "HCFilterMenuButton.h"
 
 #define BUTTON_VIEW_TAG_DEFAULT 1100
 

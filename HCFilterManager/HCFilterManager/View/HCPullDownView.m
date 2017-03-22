@@ -54,7 +54,15 @@
 
 - (void)setTitleModel:(HCFilterTitleModel *)titleModel {
     _titleModel = titleModel;
-    [self buildTableViewAtIndex:0];
+    
+    NSInteger index = 0;
+    for (int i = 0; i < titleModel.segment.count; i++) {
+        HCFilterTitleModel *model = [titleModel.segment objectAtIndex:i];
+        if (model.selected) {
+            index = i;
+        }
+    }
+    [self buildTableViewAtIndex:index];
 }
 
 // 如果没有二级菜单，直接展示数据，否则，默认展示第一个二级菜单的数据

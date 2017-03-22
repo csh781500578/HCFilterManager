@@ -198,6 +198,11 @@
 - (void)setModelList:(NSArray *)modelList {
     _modelList = modelList;
     [self.collectionView reloadData];
+    if (self.type == HCCollectionTypeCustom) {
+        
+        [self findSingleCode];
+    }
+    
 }
 
 //=================================================================
@@ -249,7 +254,6 @@
     if (self.type == HCCollectionTypeNone || self.type == HCCollectionTypeCustom) {
         HCFilterCodeModel *model = [_modelList objectAtIndex:indexPath.row];
         cell.model = model;
-        [self findSingleCodeInModel:model];
         
     }else if (self.type == HCCollectionTypeMore) {
         HCFilterTitleModel *titleModel = [_modelList objectAtIndex:indexPath.section];
@@ -268,6 +272,7 @@
         }];
         HCFilterCodeModel *model = [_modelList objectAtIndex:indexPath.row];
         model.selected = YES;
+        [self didFillingCustomDataFromValue:nil toValue:nil unit:nil];
         [self didSelectFilterModel:model codes:@[model.code]];
     }else if (self.type == HCCollectionTypeMore) {
         HCFilterTitleModel *titleModel = [_modelList objectAtIndex:indexPath.section];
@@ -324,29 +329,51 @@
 - (void)didFillingCustomDataFromValue:(NSString *)fromValue toValue:(NSString *)toValue unit:(NSString *)unit {
     for (HCFilterCodeModel *codeModel in _modelList) {
         if (codeModel.isCustomed) {
-            NSString *value = [[fromValue stringByAppendingString:@"-"] stringByAppendingString:toValue];
-            codeModel.name = [value stringByAppendingString:unit];
-            codeModel.code = [self.singleCode stringByAppendingString:value];
+            if (fromValue && toValue) {
+                NSString *value = [[fromValue stringByAppendingString:@"-"] stringByAppendingString:toValue];
+                codeModel.name = [value stringByAppendingString:unit];
+                codeModel.code = [self.singleCode stringByAppendingString:value];
+                codeModel.selected = YES;
+                [self didSelectFilterModel:codeModel codes:@[codeModel.code]];
+            }else {
+                codeModel.selected = NO;
+                codeModel.name = nil;
+                codeModel.code = nil;
+                self.fillingView.fromValue = @"";
+                self.fillingView.toValue = @"";
+            }
+            
         }
     }
 }
 
 // 找到这个菜单下专属的code
-- (void)findSingleCodeInModel:(HCFilterCodeModel *)model {
-    if (model.code.length > 0) {
-        if (!self.singleCode) {
-            self.singleCode = model.code;
-        }else {
-            for (int i = 0; i < self.singleCode.length; i++) {
-                unichar ch = [model.code characterAtIndex:i];
-                unichar cha = [self.singleCode characterAtIndex:i];
-                if (ch != cha) {
-                    NSString *chaString = [NSString stringWithCharacters:&cha length:1];
-                    self.singleCode = [[self.singleCode componentsSeparatedByString:chaString] firstObject];
+- (void)findSingleCode {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [_modelList enumerateObjectsUsingBlock:^(HCFilterCodeModel  *_Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([model isKindOfClass:[HCFilterCodeModel class]]) {
+                if (model.isCustomed && model.code.length > 0) {
+                    NSString *codeString = [model.code substringToIndex:model.code.length - 1];
+                    self.fillingView.fromValue = [[codeString componentsSeparatedByString:@"-"] firstObject];
+                    self.fillingView.toValue = [[codeString componentsSeparatedByString:@"-"] lastObject];
+                }
+                if (model.code.length > 0) {
+                    if (!self.singleCode) {
+                        self.singleCode = model.code;
+                    }else {
+                        for (int i = 0; i < self.singleCode.length; i++) {
+                            unichar ch = [model.code characterAtIndex:i];
+                            unichar cha = [self.singleCode characterAtIndex:i];
+                            if (ch != cha) {
+                                NSString *chaString = [NSString stringWithCharacters:&cha length:1];
+                                self.singleCode = [[self.singleCode componentsSeparatedByString:chaString] firstObject];
+                            }
+                        }
+                    }
                 }
             }
-        }
-    }
+        }];
+    });
 }
 
 //=================================================================

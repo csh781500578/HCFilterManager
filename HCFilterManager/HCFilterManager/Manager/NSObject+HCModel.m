@@ -54,6 +54,9 @@
         name = [name stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         name = [name stringByReplacingOccurrencesOfString:@"@" withString:@""];
         name = [name substringFromIndex:1];
+        type = [type stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        type = [type stringByReplacingOccurrencesOfString:@"@" withString:@""];
+        
         NSString *key = [name copy];
         id value = object[key];
         if (!value) {
@@ -64,9 +67,11 @@
         }
         if ([value isKindOfClass:[NSDictionary class]] && ![type hasPrefix:@"NS"]) {
             Class subClass = NSClassFromString(type);
+            
             value = [subClass hc_objectWithkeyValue:value];
         }else if ([value isKindOfClass:[NSArray class]]) {
             if ([[[self hc_modelWithArrayObject] allKeys] containsObject:name]) {
+                
                 NSMutableArray *array = [NSMutableArray new];
                 for (id subValue in value) {
                     Class subClass = NSClassFromString([[self hc_modelWithArrayObject] objectForKey:name]);

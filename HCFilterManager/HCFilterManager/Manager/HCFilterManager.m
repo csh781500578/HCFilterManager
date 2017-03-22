@@ -135,6 +135,9 @@
 }
 
 - (void)reloadDataAtTitleModel:(HCFilterTitleModel *)titleModel {
+    if ([self.dataSource containsObject:titleModel]) {
+        self.index = [self.dataSource indexOfObject:titleModel];
+    } 
     [self traverseAnyTypeOfObject:titleModel];
 }
 
@@ -178,6 +181,15 @@
         }else {
             // 最终结果
             selected = [self.selectCodes containsObject:codeModel.code];
+            if (codeModel.isCustomed) {
+                for (NSString *code in self.selectCodes) {
+                    if ([code containsString:@"-"]) {
+                        selected = YES;
+                        codeModel.code = code;
+                        codeModel.name = [[code substringFromIndex:1] stringByAppendingString:@"万"];
+                    }
+                }
+            }
             if (selected) {
                 [self didSelectModel:codeModel];
             }

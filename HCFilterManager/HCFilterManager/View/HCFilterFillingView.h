@@ -10,6 +10,11 @@
 
 @interface HCFilterFillingView : UIView
 
+/** from value **/
+@property(nonatomic,copy) NSString *fromValue;
+/** to value **/
+@property(nonatomic,copy) NSString *toValue;
+
 /** 点击回调 */
 @property(nonatomic, copy) void (^resultFromValueToValueBlock)(NSString *,NSString *,NSString *unit);
 

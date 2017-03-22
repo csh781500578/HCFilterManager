@@ -57,11 +57,12 @@
         
         _fromTextField = ({
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
-            textField.font = UIFont(11);
+            textField.font = UIFont(12);
             textField.layer.cornerRadius = TEXT_FIELD_CORNER_RADIUS;
             textField.backgroundColor = TEXT_FIELD_BACKGROUND_COLOR;
             textField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
-            textField.layoutMargins = UIEdgeInsetsMake(0, 10, 0, 10);
+            textField.leftView = [[UIView alloc] initWithFrame:(CGRect){0,0,10,10}];
+            textField.leftViewMode = UITextFieldViewModeAlways;
             
             textField;
         });
@@ -74,12 +75,12 @@
         
         _toTextField = ({
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
-            textField.font = UIFont(11);
+            textField.font = UIFont(12);
             textField.backgroundColor = TEXT_FIELD_BACKGROUND_COLOR;
             textField.layer.cornerRadius = TEXT_FIELD_CORNER_RADIUS;
             textField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
-            
-            textField.layoutMargins = UIEdgeInsetsMake(0, 10, 0, 10);
+            textField.leftView = [[UIView alloc] initWithFrame:(CGRect){0,0,10,10}];
+            textField.leftViewMode = UITextFieldViewModeAlways;
             
             textField;
         });
@@ -139,7 +140,18 @@
     [self layoutIfNeeded];
 }
 
+- (void)setFromValue:(NSString *)fromValue {
+    _fromValue = fromValue;
+    self.fromTextField.text = fromValue;
+}
+
+- (void)setToValue:(NSString *)toValue {
+    _toValue = toValue;
+    self.toTextField.text = toValue;
+}
+
 - (void)fillingResult {
+    [self endEditing:YES];
     if (self.resultFromValueToValueBlock) {
         self.resultFromValueToValueBlock(self.fromTextField.text,self.toTextField.text,UNIT_LABEL_TEXT);
     }

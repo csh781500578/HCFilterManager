@@ -39,6 +39,7 @@
         button.frame = CGRectMake(i * width, 0, width, height);
         button.selected = NO;
         
+        
         button.titleLabel.minimumScaleFactor = 0.5;
         [button setTitleColor:TITLE_COLOR forState:HCControlStateNormal];
         [button setTitleColor:RED_COLOR forState:HCControlStateSelected];

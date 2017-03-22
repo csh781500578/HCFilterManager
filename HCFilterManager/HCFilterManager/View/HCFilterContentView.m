@@ -42,7 +42,6 @@
 - (void)pullDownViewCommitNotification:(NSNotification *)notification {
     NSDictionary *userInfo = notification.object;
     NSNumber *number = [userInfo objectForKey:kNotificationSelectTitleIndex];
-    HCFilterCodeModel *model = [userInfo objectForKey:kNotificationSelectFilterModel];
     NSArray *codes = [userInfo objectForKey:kNotificationSelectFilterCodes] ?: @[];
     if (self.dataList.count >= [number integerValue] ) {
         NSMutableArray *mutableArray = [self.selectedCodes objectAtIndex:[number integerValue]];

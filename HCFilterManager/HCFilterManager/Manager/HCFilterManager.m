@@ -105,7 +105,7 @@
             }else {
                 HCFilterCodeModel *model = [HCFilterCodeModel hc_objectWithkeyValue:value];
                 return @{key:model?:@""};
-            } 
+            }
         }else {
             if ([value isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *dictionary = [self valueDictionary:value forKey:key];
@@ -121,7 +121,7 @@
 
 /**
  遍历有选择的model
-
+ 
  @param selectCodes 选中的codes
  */
 - (void)traverseDataSourceWithSelectCodes:(NSArray *)selectCodes {
@@ -137,8 +137,10 @@
 - (void)reloadDataAtTitleModel:(HCFilterTitleModel *)titleModel {
     if ([self.dataSource containsObject:titleModel]) {
         self.index = [self.dataSource indexOfObject:titleModel];
-    } 
-    [self traverseAnyTypeOfObject:titleModel];
+    }
+    if (![self traverseAnyTypeOfObject:titleModel]) {
+        [self.filterView setShowTitlesWithModel:nil index:self.index];
+    }
 }
 
 //遍历数据源

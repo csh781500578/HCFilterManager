@@ -109,7 +109,7 @@
     }else if (tableView == self.secondTableView) {
         HCFilterCodeModel *model = [self.codeModel.data.block objectAtIndex:indexPath.row];
         cell.model = model;
-        cell.backgroundColor = [UIColor whiteColor]; 
+        cell.backgroundColor = [UIColor whiteColor];
     }
     
     return cell;
@@ -155,11 +155,14 @@
 }
 
 - (void)didSelectFilterModel:(HCFilterCodeModel *)model {
-    NSArray *codes = @[model.code];
+    NSArray *codes = nil;
+    if (model.code && model.code.length > 0) {
+        codes = @[model.code];
+    }
     if (!model.code || model.code.length == 0) {
         codes = @[self.codeModel.data.code];
         model = self.codeModel;
-    } else {
+    } else if (self.codeModel.code && self.codeModel.code.length > 0){
         codes = @[model.code,self.codeModel.code];
     }
     NSMutableDictionary *object = [@{
@@ -198,6 +201,6 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = TABLE_VIEW_ROW_HEIGHT;
-    [tableView registerClass:[HCTableViewCell class] forCellReuseIdentifier:NSStringFromClass([HCTableViewCell class])]; 
+    [tableView registerClass:[HCTableViewCell class] forCellReuseIdentifier:NSStringFromClass([HCTableViewCell class])];
 }
 @end

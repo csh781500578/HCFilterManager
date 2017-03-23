@@ -48,7 +48,7 @@
         [mutableArray removeAllObjects];
         [mutableArray addObjectsFromArray:codes];
         // 清理所有单选的model
-        [self deselectSingleModelAtIndex:[number integerValue]]; 
+        [self deselectSingleModelAtIndex:[number integerValue]];
     }
     
     [self dismissPullDownView:nil];
@@ -116,7 +116,7 @@
         [self layoutIfNeeded];
     } completion:^(BOOL finished) {
         
-    }]; 
+    }];
     
 }
 
@@ -124,7 +124,7 @@
 - (void)dismissPullDownView:(void (^)(void))finish {
     if (!finish) {
         [self.menuView cancelSelected];
-    } 
+    }
     if (self.isShow) {
         self.isShow = NO;
         self.leju_height = FILTER_VIEW_HEIGHT;

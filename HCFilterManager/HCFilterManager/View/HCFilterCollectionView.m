@@ -273,7 +273,11 @@
         HCFilterCodeModel *model = [_modelList objectAtIndex:indexPath.row];
         model.selected = YES;
         [self didFillingCustomDataFromValue:nil toValue:nil unit:nil];
-        [self didSelectFilterModel:model codes:@[model.code]];
+        NSArray *codes = nil;
+        if (model.code && model.code.length > 0) {
+            codes = @[model.code];
+        }
+        [self didSelectFilterModel:model codes:codes];
     }else if (self.type == HCCollectionTypeMore) {
         HCFilterTitleModel *titleModel = [_modelList objectAtIndex:indexPath.section];
         [titleModel.lists enumerateObjectsUsingBlock:^(HCFilterCodeModel *_Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -295,7 +299,7 @@
             }
         }];
     }];
-    [self.collectionView reloadData]; 
+    [self.collectionView reloadData];
 }
 
 - (void)didCommitFilterCodesAction {
